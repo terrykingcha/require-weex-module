@@ -1,7 +1,7 @@
 {
   "name": "weex-require-polyfill",
   "version": "0.0.1",
-  "description": "a polyfill for __weex_require__",
+  "description": "a polyfill for weex_require",
   "main": "lib/index.js",
   "author": "terrykingcha <terrykingcha@gmail.com>",
   "repository": {
