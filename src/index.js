@@ -1,17 +1,20 @@
-const modules = {};
+const modules = {}
 
-export default function requireWeexModule(moduleName) {
-    if (moduleName.startsWith('@weex-module/')) {
-        moduleName = moduleName.split('/')[1];
-    }
-
-    const moduleKey = `__weex-module-${moduleName}__`;
+export default function weexRequirePolyfill (moduleName) {
+  if (global.__weex_require__) {
+    return global.__weex_require__(moduleName)
+  }
+  else {
+    moduleName = moduleName.split('/')[1]
+    const moduleKey = `__weex-module-${moduleName}__`
 
     if (!modules[moduleKey]) {
-        __weex_define__(`@weex-component/${moduleKey}`, (__weex_require__) => {
-            modules[moduleKey] = __weex_require__(`@weex-module/${moduleName}`);
-        });
+      // eslint-disable-next-line
+      __weex_define__(`@weex-component/${moduleKey}`, (__weex_require__) => {
+        modules[moduleKey] = __weex_require__(`@weex-module/${moduleName}`)
+      })
     }
 
-    return modules[moduleKey];
+    return modules[moduleKey]
+  }
 }

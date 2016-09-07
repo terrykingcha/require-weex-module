@@ -1,0 +1,18 @@
+<template>
+    <div>
+        <text>Test __weex_require__ polyfill</text>
+    </div>
+</template>
+
+<script>
+import toast from './toast.js';
+import confirm from './confirm.js';
+
+export default {
+    ready() {
+        confirm('Yes or No!', 'Yes', 'No', function(result) {
+            toast(result);
+        });
+    }
+}
+</script>
